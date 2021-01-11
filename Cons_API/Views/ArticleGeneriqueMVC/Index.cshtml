@@ -1,0 +1,323 @@
+﻿@model IEnumerable<Cons_API.Models.ArticleGenerique>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CBMARQ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Ref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Design)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_UniteVen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dim_code1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dim_code2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_DateModifiction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_PrixAch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Coef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_PrixVen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_PrixTTC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_SuiviStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_CodeFiscal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Pays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FA_CodeFamille)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_PUNet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_NotImp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Remise)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_CodeBarre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_PrixAchDern)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_TaxeVente1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_TaxeVente2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_TaxeAchat1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_TaxeAchat2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Sommeil)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Conditionne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_QteConditionne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_TypeArt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DIM_CODE1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DIM_CODE2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Statut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_FRSPR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Jointe1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Jointe2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_Poids)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_REFFRS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CA_NO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_EMBALLAGE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_STOCKMIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_FEINTEPROD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_DELAIAPPRO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_FEINTAPPRO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FA0_NO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_LOTENCOURS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_CREATEUR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AR_MODIFICATEUR)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBMARQ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Ref)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Design)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_UniteVen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dim_code1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dim_code2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_DateModifiction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_PrixAch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Coef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_PrixVen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_PrixTTC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_SuiviStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_CodeFiscal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Pays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FA_CodeFamille)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_PUNet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_NotImp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Remise)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_CodeBarre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_PrixAchDern)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_TaxeVente1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_TaxeVente2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_TaxeAchat1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_TaxeAchat2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Sommeil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Conditionne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_QteConditionne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_TypeArt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DIM_CODE1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DIM_CODE2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_FRSPR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Jointe1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Jointe2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_Poids)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_REFFRS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CA_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_EMBALLAGE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_STOCKMIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_FEINTEPROD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_DELAIAPPRO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_FEINTAPPRO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FA0_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_LOTENCOURS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_CREATEUR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AR_MODIFICATEUR)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
