@@ -1,0 +1,324 @@
+﻿@model Cons_API.Models.Client
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+}
+
+<h1>AddOrEdit</h1>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Num)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Num)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Intitule)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Intitule)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CG_NumPrinc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CG_NumPrinc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Contact)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Contact)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Complement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Complement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_CodePostal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_CodePostal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Ville)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Ville)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_CodeRegion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_CodeRegion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Pays)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Pays)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Raccourci)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Raccourci)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BT_Num)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BT_Num)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Ape)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Ape)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Identifiant)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Identifiant)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Siret)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Siret)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Encours)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Encours)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_NumPayeur)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_NumPayeur)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.N_CatTarif)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.N_CatTarif)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.N_CatCompta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.N_CatCompta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_DateCreate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_DateCreate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Sommeil)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Sommeil)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DE_No)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DE_No)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Telephone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Telephone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Telecopie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Telecopie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_EMail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_EMail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Site)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Site)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Timbre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Timbre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Remise)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Remise)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_CTVA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_CTVA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Categorie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Categorie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Etranger)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Etranger)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Devise)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Devise)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_CoursDevise)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_CoursDevise)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_LIVADRESSE)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_LIVADRESSE)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_LIVCP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_LIVCP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_LIVVILLE)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_LIVVILLE)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_LIVPAYS)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_LIVPAYS)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Qualite)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Qualite)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Adresse)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Adresse)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Commentaire)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Commentaire)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Classement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Classement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Jointe1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Jointe1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_Jointe2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_Jointe2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CO_No)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CO_No)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EMR_Code)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EMR_Code)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IT_CODE)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IT_CODE)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_AUXI)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_AUXI)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_ICE)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_ICE)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FC_NO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FC_NO)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_CREATEUR)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_CREATEUR)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CT_MODIFICATEUR)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CT_MODIFICATEUR)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
