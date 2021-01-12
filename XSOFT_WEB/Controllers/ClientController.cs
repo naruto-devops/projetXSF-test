@@ -25,17 +25,36 @@ namespace XSOFT_WEB.Controllers
             return _clientRepository.GetAll();
 
         }
-        [HttpGet("{Id}")]
+        [HttpGet("{cbmarq}")]
         public Client GetById(int id)
         {
             return _clientRepository.GetById(id);
 
         }
-        //[HttpPost]
-        //public List<Client> Post()
-        //{
-        //    return _clientRepository.GetAll();
+        [HttpPost]
+        public void Post([FromBody]Client clt)
+        {
+            if (ModelState.IsValid)
+                _clientRepository.Add(clt);
 
-        //}
+        }
+        [HttpPut("{id}")]
+       // public void Put(string id, [FromBody]Client clt)
+        public void Put(string id, [FromBody]Client clt)
+        {
+            clt.CT_Num = id;
+
+            if (ModelState.IsValid)
+                _clientRepository.Update(id);
+
+        }
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+           
+                _clientRepository.Delete(id);
+
+        }
+
     }
 }

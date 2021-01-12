@@ -49,6 +49,8 @@ namespace Repositories.Implementations
                 }
                 return res;
               }
+
+
         public Client GetById(int id)
         {
             var res = new Client();
@@ -70,7 +72,73 @@ namespace Repositories.Implementations
             }
             return res;
         }
-        
 
-   }
+
+        public void Add(Client clt)
+        {
+           
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"INSERT INTO F_COMPTET
+                                    (CT_Num,CT_Intitule,CT_Type  ,CG_NumPrinc                )
+                                     VALUES  (@CT_Num ,@CT_Intitule  ,@CT_Type ,@CG_NumPrinc          )";
+                    dbConnection.Open();
+                     dbConnection.Execute(sQuery,clt);
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+           
+        }
+
+        public void Delete(string id)
+        {
+           
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"Delete from F_COMPTET where CT_Type = '0' and CT_NUM =@Id ";
+                    dbConnection.Open();
+                     dbConnection.Execute(sQuery, new { ID= id});
+                }
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+            
+        }
+
+        public void Update(string id)
+        {
+
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"update F_COMPTET set CT_Intitule='hamadiabid'
+                                     where CT_NUM =@Id ";
+                    dbConnection.Open();
+                    dbConnection.Execute(sQuery, new { ID = id });
+                }
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
+    }
 }

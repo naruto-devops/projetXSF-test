@@ -1,0 +1,283 @@
+﻿@model Cons_API.Models.Client
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CT_Num" class="control-label"></label>
+                <input asp-for="CT_Num" class="form-control" />
+                <span asp-validation-for="CT_Num" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Intitule" class="control-label"></label>
+                <input asp-for="CT_Intitule" class="form-control" />
+                <span asp-validation-for="CT_Intitule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Type" class="control-label"></label>
+                <input asp-for="CT_Type" class="form-control" />
+                <span asp-validation-for="CT_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CG_NumPrinc" class="control-label"></label>
+                <input asp-for="CG_NumPrinc" class="form-control" />
+                <span asp-validation-for="CG_NumPrinc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Contact" class="control-label"></label>
+                <input asp-for="CT_Contact" class="form-control" />
+                <span asp-validation-for="CT_Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Complement" class="control-label"></label>
+                <input asp-for="CT_Complement" class="form-control" />
+                <span asp-validation-for="CT_Complement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_CodePostal" class="control-label"></label>
+                <input asp-for="CT_CodePostal" class="form-control" />
+                <span asp-validation-for="CT_CodePostal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Ville" class="control-label"></label>
+                <input asp-for="CT_Ville" class="form-control" />
+                <span asp-validation-for="CT_Ville" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_CodeRegion" class="control-label"></label>
+                <input asp-for="CT_CodeRegion" class="form-control" />
+                <span asp-validation-for="CT_CodeRegion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Pays" class="control-label"></label>
+                <input asp-for="CT_Pays" class="form-control" />
+                <span asp-validation-for="CT_Pays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Raccourci" class="control-label"></label>
+                <input asp-for="CT_Raccourci" class="form-control" />
+                <span asp-validation-for="CT_Raccourci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BT_Num" class="control-label"></label>
+                <input asp-for="BT_Num" class="form-control" />
+                <span asp-validation-for="BT_Num" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Ape" class="control-label"></label>
+                <input asp-for="CT_Ape" class="form-control" />
+                <span asp-validation-for="CT_Ape" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Identifiant" class="control-label"></label>
+                <input asp-for="CT_Identifiant" class="form-control" />
+                <span asp-validation-for="CT_Identifiant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Siret" class="control-label"></label>
+                <input asp-for="CT_Siret" class="form-control" />
+                <span asp-validation-for="CT_Siret" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Encours" class="control-label"></label>
+                <input asp-for="CT_Encours" class="form-control" />
+                <span asp-validation-for="CT_Encours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_NumPayeur" class="control-label"></label>
+                <input asp-for="CT_NumPayeur" class="form-control" />
+                <span asp-validation-for="CT_NumPayeur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="N_CatTarif" class="control-label"></label>
+                <input asp-for="N_CatTarif" class="form-control" />
+                <span asp-validation-for="N_CatTarif" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="N_CatCompta" class="control-label"></label>
+                <input asp-for="N_CatCompta" class="form-control" />
+                <span asp-validation-for="N_CatCompta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_DateCreate" class="control-label"></label>
+                <input asp-for="CT_DateCreate" class="form-control" />
+                <span asp-validation-for="CT_DateCreate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Sommeil" class="control-label"></label>
+                <input asp-for="CT_Sommeil" class="form-control" />
+                <span asp-validation-for="CT_Sommeil" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DE_No" class="control-label"></label>
+                <input asp-for="DE_No" class="form-control" />
+                <span asp-validation-for="DE_No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Telephone" class="control-label"></label>
+                <input asp-for="CT_Telephone" class="form-control" />
+                <span asp-validation-for="CT_Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Telecopie" class="control-label"></label>
+                <input asp-for="CT_Telecopie" class="form-control" />
+                <span asp-validation-for="CT_Telecopie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_EMail" class="control-label"></label>
+                <input asp-for="CT_EMail" class="form-control" />
+                <span asp-validation-for="CT_EMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Site" class="control-label"></label>
+                <input asp-for="CT_Site" class="form-control" />
+                <span asp-validation-for="CT_Site" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Timbre" class="control-label"></label>
+                <input asp-for="Timbre" class="form-control" />
+                <span asp-validation-for="Timbre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Remise" class="control-label"></label>
+                <input asp-for="CT_Remise" class="form-control" />
+                <span asp-validation-for="CT_Remise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_CTVA" class="control-label"></label>
+                <input asp-for="CT_CTVA" class="form-control" />
+                <span asp-validation-for="CT_CTVA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Categorie" class="control-label"></label>
+                <input asp-for="CT_Categorie" class="form-control" />
+                <span asp-validation-for="CT_Categorie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Etranger" class="control-label"></label>
+                <input asp-for="CT_Etranger" class="form-control" />
+                <span asp-validation-for="CT_Etranger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Devise" class="control-label"></label>
+                <input asp-for="CT_Devise" class="form-control" />
+                <span asp-validation-for="CT_Devise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_CoursDevise" class="control-label"></label>
+                <input asp-for="CT_CoursDevise" class="form-control" />
+                <span asp-validation-for="CT_CoursDevise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_LIVADRESSE" class="control-label"></label>
+                <input asp-for="CT_LIVADRESSE" class="form-control" />
+                <span asp-validation-for="CT_LIVADRESSE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_LIVCP" class="control-label"></label>
+                <input asp-for="CT_LIVCP" class="form-control" />
+                <span asp-validation-for="CT_LIVCP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_LIVVILLE" class="control-label"></label>
+                <input asp-for="CT_LIVVILLE" class="form-control" />
+                <span asp-validation-for="CT_LIVVILLE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_LIVPAYS" class="control-label"></label>
+                <input asp-for="CT_LIVPAYS" class="form-control" />
+                <span asp-validation-for="CT_LIVPAYS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Qualite" class="control-label"></label>
+                <input asp-for="CT_Qualite" class="form-control" />
+                <span asp-validation-for="CT_Qualite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Adresse" class="control-label"></label>
+                <input asp-for="CT_Adresse" class="form-control" />
+                <span asp-validation-for="CT_Adresse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Commentaire" class="control-label"></label>
+                <input asp-for="CT_Commentaire" class="form-control" />
+                <span asp-validation-for="CT_Commentaire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Classement" class="control-label"></label>
+                <input asp-for="CT_Classement" class="form-control" />
+                <span asp-validation-for="CT_Classement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Jointe1" class="control-label"></label>
+                <input asp-for="CT_Jointe1" class="form-control" />
+                <span asp-validation-for="CT_Jointe1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_Jointe2" class="control-label"></label>
+                <input asp-for="CT_Jointe2" class="form-control" />
+                <span asp-validation-for="CT_Jointe2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CO_No" class="control-label"></label>
+                <input asp-for="CO_No" class="form-control" />
+                <span asp-validation-for="CO_No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMR_Code" class="control-label"></label>
+                <input asp-for="EMR_Code" class="form-control" />
+                <span asp-validation-for="EMR_Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IT_CODE" class="control-label"></label>
+                <input asp-for="IT_CODE" class="form-control" />
+                <span asp-validation-for="IT_CODE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_AUXI" class="control-label"></label>
+                <input asp-for="CT_AUXI" class="form-control" />
+                <span asp-validation-for="CT_AUXI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_ICE" class="control-label"></label>
+                <input asp-for="CT_ICE" class="form-control" />
+                <span asp-validation-for="CT_ICE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FC_NO" class="control-label"></label>
+                <input asp-for="FC_NO" class="form-control" />
+                <span asp-validation-for="FC_NO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_CREATEUR" class="control-label"></label>
+                <input asp-for="CT_CREATEUR" class="form-control" />
+                <span asp-validation-for="CT_CREATEUR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CT_MODIFICATEUR" class="control-label"></label>
+                <input asp-for="CT_MODIFICATEUR" class="form-control" />
+                <span asp-validation-for="CT_MODIFICATEUR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

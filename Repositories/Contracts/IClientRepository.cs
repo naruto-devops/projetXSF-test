@@ -9,5 +9,8 @@ namespace Repositories.Contracts
     {
          List<Client> GetAll();
         Client GetById(int id);
+        void Add(Client clt);
+        void Update(string id);
+        void Delete(string id);
     }
 }
