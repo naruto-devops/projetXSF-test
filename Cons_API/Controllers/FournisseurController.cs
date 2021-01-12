@@ -18,5 +18,6 @@ namespace Cons_API.Controllers
 
             return View(listeFournisseurs);
         }
+
     }
 }
