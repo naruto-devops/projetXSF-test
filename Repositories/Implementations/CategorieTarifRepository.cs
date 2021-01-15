@@ -1,21 +1,20 @@
-﻿using Dapper;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Models.Models;
 using Repositories.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using Dapper;
+using System.Linq;
 
 namespace Repositories.Implementations
 {
-    public class ClientRepository : IClientRepository
+   public  class CategorieTarifRepository : ICategorieTarifRepository
     {
-
         IConfiguration Configuration { get; }
-        public ClientRepository(IConfiguration configuration)
+        public CategorieTarifRepository(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -28,16 +27,16 @@ namespace Repositories.Implementations
 
         }
 
-        public List<Client> GetAll()
+        public List<CategorieTarif> GetAll()
         {
-            var res = new List<Client>();
+            var res = new List<CategorieTarif>();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select * from F_COMPTET where CT_Type = '0' ";
+                    string sQuery = @"select ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif  ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Client>(sQuery).ToList();
+                    res = dbConnection.Query<CategorieTarif>(sQuery).ToList();
 
                 }
 
@@ -52,16 +51,16 @@ namespace Repositories.Implementations
         }
 
 
-        public Client GetById(int id)
+        public CategorieTarif GetById(string id)
         {
-            var res = new Client();
+            var res = new CategorieTarif();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select * from F_COMPTET where CT_Type = '0' and cbMarq =@Id ";
+                    string sQuery = @"select   ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif where ct_intitule =@Id ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Client>(sQuery, new { Id = id }).FirstOrDefault();
+                    res= dbConnection.Query<CategorieTarif>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
@@ -75,18 +74,18 @@ namespace Repositories.Implementations
         }
 
 
-        public void Add(Client clt)
+        public void Add(CategorieTarif frs)
         {
-
+            var finput = frs;
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"INSERT INTO F_COMPTET
-                                    (CT_Num,CT_Intitule,CT_Type  ,CG_NumPrinc                )
-                                     VALUES  (@CT_Num ,@CT_Intitule  ,@CT_Type ,@CG_NumPrinc          )";
+                    string sQuery = @"INSERT INTO  P_cattarif
+                                    ( ct_intitule , CT_TTC    )
+                                     VALUES  (@categorie,@PrixTTC )";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, clt);
+                    dbConnection.Execute(sQuery, frs);
 
                 }
 
@@ -106,7 +105,7 @@ namespace Repositories.Implementations
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"Delete from F_COMPTET where CT_Type = '0' and CT_NUM =@Id ";
+                    string sQuery = @"Delete from P_cattarif where  ct_intitule = @Id ";
                     dbConnection.Open();
                     dbConnection.Execute(sQuery, new { ID = id });
                 }
@@ -120,17 +119,18 @@ namespace Repositories.Implementations
 
         }
 
-        public void Update(string id)
+        public void Update(CategorieTarif fts)
         {
 
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"update F_COMPTET set CT_Intitule='hamadiabid'
-                                     where CT_NUM =@Id ";
+                    string sQuery = @"update  P_cattarif set  ct_intitule =@categorie , CT_TTC=@PrixTTC where ct_intitule =@categorie";
+
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, new { ID = id });
+                    dbConnection.Execute(sQuery, fts);
+
                 }
 
             }

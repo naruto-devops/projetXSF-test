@@ -28,7 +28,20 @@ namespace Cons_API.Controllers
         public IActionResult Add(Client clt)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Client", clt).Result;
-//            TempData["SuccessMessage"] = "Saved successfully";
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int i)
+        {
+
+            return View(new Client());
+        }
+        [HttpPut]
+        public IActionResult Edit(Client clt)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Client", clt).Result;
+           
             return RedirectToAction("Index");
         }
     }
