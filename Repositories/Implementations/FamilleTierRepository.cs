@@ -11,11 +11,11 @@ using System.Text;
 
 namespace Repositories.Implementations
 {
-    public class ClientRepository : IClientRepository
-    {
+   public  class FamilleTierRepository: IFamilleTierRepository
 
+    {
         IConfiguration Configuration { get; }
-        public ClientRepository(IConfiguration configuration)
+        public FamilleTierRepository(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -28,16 +28,16 @@ namespace Repositories.Implementations
 
         }
 
-        public List<Client> GetAll()
+        public List<FamilleTier> GetAll()
         {
-            var res = new List<Client>();
+            var res = new List<FamilleTier>();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select * from F_COMPTET where CT_Type = '0' ";
+                    string sQuery = @"select FC_NO as Numero, FC_Code as Code, FC_Libelle as Libelle, FC_CAttarif as CategorieTarif, Fc_Exonere as Exonere  from F_FamilleTier  ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Client>(sQuery).ToList();
+                    res = dbConnection.Query<FamilleTier>(sQuery).ToList();
 
                 }
 
@@ -52,16 +52,16 @@ namespace Repositories.Implementations
         }
 
 
-        public Client GetById(int id)
+        public FamilleTier GetById(string id)
         {
-            var res = new Client();
+            var res = new FamilleTier();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select * from F_COMPTET where CT_Type = '0' and cbMarq =@Id ";
+                    string sQuery = @"select  FC_Code as Code, FC_Libelle as Libelle, FC_CAttarif as CategorieTarif, Fc_Exonere as Exonere from F_FamilleTier where FC_CODE =@Id ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Client>(sQuery, new { Id = id }).FirstOrDefault();
+                    res= dbConnection.Query<FamilleTier>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
@@ -75,18 +75,18 @@ namespace Repositories.Implementations
         }
 
 
-        public void Add(Client clt)
+        public void Add(FamilleTier frs)
         {
-
+            var finput = frs; 
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"INSERT INTO F_COMPTET
-                                    (CT_Num,CT_Intitule,CT_Type  ,CG_NumPrinc                )
-                                     VALUES  (@CT_Num ,@CT_Intitule  ,@CT_Type ,@CG_NumPrinc          )";
+                    string sQuery = @"INSERT INTO F_FamilleTier
+                                    ( fc_code,fc_libelle,fc_cattarif,fc_exonere                )
+                                     VALUES  (@Code,@Libelle,@CategorieTarif,@Exonere)";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, clt);
+                    dbConnection.Execute(sQuery, frs);
 
                 }
 
@@ -106,7 +106,7 @@ namespace Repositories.Implementations
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"Delete from F_COMPTET where CT_Type = '0' and CT_NUM =@Id ";
+                    string sQuery = @"Delete from F_FamilleTier where FC_Code = @Id ";
                     dbConnection.Open();
                     dbConnection.Execute(sQuery, new { ID = id });
                 }
@@ -120,17 +120,17 @@ namespace Repositories.Implementations
 
         }
 
-        public void Update(string id)
+        public void Update( FamilleTier fts)
         {
 
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"update F_COMPTET set CT_Intitule='hamadiabid'
-                                     where CT_NUM =@Id ";
+                    string sQuery = @"update F_FamilleTier set  fc_libelle =@libelle , fc_cattarif=@categorietarif, fc_exonere=@exonere   where fc_code =@code ";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, new { ID = id });
+                    dbConnection.Execute(sQuery, fts);
+
                 }
 
             }

@@ -326,7 +326,7 @@
                 @Html.DisplayFor(modelItem => item.CT_MODIFICATEUR)
             </td>
             <td>
-                <a href="@Url.Action("Add","Client")">Modifier  </a> |
+                <a href="@Url.Action("Edit","Client", new { id = item.CT_Num})">Modifier </a> |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
