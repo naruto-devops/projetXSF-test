@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,45 +14,57 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class CategorieTarifController : ControllerBase
     {
-        ICategorieTarifRepository _CategorieTarifRepository;
+        ICategorieTarifService _CategorieTarifService;
 
-        public CategorieTarifController(ICategorieTarifRepository cat)
+        public CategorieTarifController(ICategorieTarifService categorie)
         {
-            _CategorieTarifRepository = cat;
+            _CategorieTarifService = categorie;
         }
         [HttpGet]
         public List<CategorieTarif> GetAll()
         {
-            return _CategorieTarifRepository.GetAll();
+            return _CategorieTarifService.GetAll();
 
         }
         [HttpGet("{code}")]
-        public CategorieTarif GetById(string id)
+        public CategorieTarif GetById(int id)
         {
-            return _CategorieTarifRepository.GetById(id);
+            return _CategorieTarifService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]CategorieTarif frs)
+        public CategorieTarif Post([FromBody]CategorieTarif categorie)
         {
             if (ModelState.IsValid)
-                _CategorieTarifRepository.Add(frs);
+                _CategorieTarifService.Add(categorie);
+            return categorie;
 
         }
         [HttpPut]
-        public void Put([FromBody]CategorieTarif ft)
+        public CategorieTarif Put([FromBody]CategorieTarif categorie)
         {
 
 
             if (ModelState.IsValid)
-                _CategorieTarifRepository.Update(ft);
+                _CategorieTarifService.Update(categorie);
+            return categorie;
 
         }
         [HttpDelete("{code}")]
-        public void Delete(string id)
+        public bool Delete(int id)
         {
 
-            _CategorieTarifRepository.Delete(id);
+            bool res = false;
+
+            if (_CategorieTarifService.CheckCategorie_ExistClient(id)==false)
+            {
+                _CategorieTarifService.Delete(id);
+                res = true;
+
+            }
+
+            return res;
+
 
         }
     }

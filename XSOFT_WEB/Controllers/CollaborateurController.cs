@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,45 +14,53 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class CollaborateurController : ControllerBase
     {
-        ICollaborateurRepository _CollaborateurRepository;
+        ICollaborateurService _collaborateurService;
 
-        public CollaborateurController(ICollaborateurRepository frs)
+        public CollaborateurController(ICollaborateurService collaborateurService)
         {
-            _CollaborateurRepository = frs;
+            _collaborateurService = collaborateurService;
         }
         [HttpGet]
         public List<Collaborateur> GetAll()
         {
-            return _CollaborateurRepository.GetAll();
+            return _collaborateurService.GetAll();
 
         }
         [HttpGet("{Numero}")]
         public Collaborateur GetById(int id)
         {
-            return _CollaborateurRepository.GetById(id);
+            return _collaborateurService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]Collaborateur dvs)
+        public Collaborateur Post([FromBody]Collaborateur collaborateur)
         {
             if (ModelState.IsValid)
-                _CollaborateurRepository.Add(dvs);
+                _collaborateurService.Add(collaborateur);
+            return collaborateur;
 
         }
         [HttpPut]
-        public void Put([FromBody]Collaborateur dvs)
+        public Collaborateur Put([FromBody]Collaborateur collaborateur)
         {
 
-
+            
             if (ModelState.IsValid)
-                _CollaborateurRepository.Update(dvs);
+                _collaborateurService.Update(collaborateur);
+            return collaborateur;
 
         }
         [HttpDelete("{numero}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool res = false;
 
-            _CollaborateurRepository.Delete(id);
+            if (_collaborateurService.CheckCol_ExistClient(id)==false)
+            { _collaborateurService.Delete(id);
+                res = true;
+            }
+           
+            return res;
 
         }
     }

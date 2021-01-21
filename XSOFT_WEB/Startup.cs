@@ -15,6 +15,9 @@ using Repositories.Contracts;
 using Reposiotries.Implementations;
 using Newtonsoft.Json.Serialization;
 using Repositories.Implementations;
+using Services.Contracts;
+using Services;
+using Services.Implementations;
 
 namespace XSOFT_WEB
 {
@@ -38,6 +41,7 @@ namespace XSOFT_WEB
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "v1" });
             });
+            #region repo
             services.AddScoped<IArticleGeneriqueRepository, ArticleGeneriqueRepository>();
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IFournisseurRepository, FournisseurRepository>();
@@ -47,6 +51,17 @@ namespace XSOFT_WEB
             services.AddScoped<ICollaborateurRepository, CollaborateurRepository>();
             services.AddScoped<IModalitePaiementRepository, ModalitePaiementRepository>();
             services.AddScoped<IIncotermRepository, IncotermRepository>();
+            #endregion
+
+            #region services
+            services.AddScoped<ICollaborateurService, CollaborateurServices>();
+            services.AddScoped<IDeviseService, DeviseServices>();
+            services.AddScoped<IFamilleTierService, FamilleTierServices>();
+            services.AddScoped<ICategorieTarifService, CategorieTarifServices>();
+            services.AddScoped<IModalitePaiementService, ModalitePaiementServices>();
+            services.AddScoped<IIncotermService, IncotermServices>();
+
+            #endregion
 
         }
 

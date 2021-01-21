@@ -29,7 +29,7 @@ namespace Repositories.Implementations
 
         public List<Collaborateur> GetAll()
         {
-            var res = new List<Collaborateur>();
+            var collaborateurs = new List<Collaborateur>();
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -49,24 +49,24 @@ namespace Repositories.Implementations
                                      from F_COLLABORATEUR
                                       ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Collaborateur>(sQuery).ToList();
+                    collaborateurs = dbConnection.Query<Collaborateur>(sQuery).ToList();
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
 
-            return res;
+            return collaborateurs;
         }
 
 
         public Collaborateur GetById(int id)
         {
-            var res = new Collaborateur();
+            var collaborateur = new Collaborateur();
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -86,23 +86,23 @@ namespace Repositories.Implementations
                                      from F_COLLABORATEUR
                                      where CO_NO =@Id ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Collaborateur>(sQuery, new { Id = id }).FirstOrDefault();
+                    collaborateur = dbConnection.Query<Collaborateur>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-            return res;
+            return collaborateur;
         }
 
 
-        public void Add(Collaborateur cbl)
+        public Collaborateur Add(Collaborateur collaborateur)
         {
-            var finput = cbl;
+            
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -113,27 +113,27 @@ namespace Repositories.Implementations
                                      VALUES  (
                                     @Nom,  @Prenom,@Fonction,@Adresse,@CodePostal, @Ville,@Service,@Telephone,@EMail,@Matricule,@Type)";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, cbl);
+                    dbConnection.Execute(sQuery, collaborateur);
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return collaborateur;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
 
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"Delete from F_COLLABORATEUR where   CO_NO = @Id ";
+                    string sQuery = @"Delete from F_COLLABORATEUR where   CO_No = @Id ";
                     dbConnection.Open();
                     dbConnection.Execute(sQuery, new { ID = id });
                 }
@@ -141,13 +141,13 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return false;
 
             }
-
+            return true;
         }
 
-        public void Update(Collaborateur fts)
+        public Collaborateur Update(Collaborateur collaborateur)
         {
 
             try
@@ -163,16 +163,56 @@ namespace Repositories.Implementations
                                 where  CO_NO = @Numero";
 
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, fts);
+                    dbConnection.Execute(sQuery, collaborateur);
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
+            return collaborateur;
+        }
+
+      public  Collaborateur GetByClient(int id)
+        {
+
+            var collaborateur = new Collaborateur();
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"select       CO_Nom     as Nom , 
+                                     CO_Prenom     as            Prenom  ,
+                                     CO_Fonction     as            Fonction  ,
+                                     CO_Adresse     as            Adresse  ,
+                                     CO_CodePostal     as            CodePostal  ,
+                                     CO_Ville     as            Ville  ,
+                                     CO_Service     as            Service  ,
+                                     CO_Telephone     as            Telephone  ,
+                                     CO_EMail     as            EMail  ,
+                                     CO_Matricule     as            Matricule  ,
+                                     CO_Type          as            Type  ,
+                                     CO_NO as Numero
+                                     from F_COLLABORATEUR
+                                     
+                                     where CO_NO =@id and CO_NO in (select distinct CO_NO from F_COMPTET) ";
+                    dbConnection.Open();
+                    collaborateur = dbConnection.Query<Collaborateur>(sQuery, new { Id = id }).FirstOrDefault();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+            
+            return collaborateur;
+
 
         }
     }

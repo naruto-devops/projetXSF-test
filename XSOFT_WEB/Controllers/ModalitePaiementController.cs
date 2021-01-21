@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,45 +14,56 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class ModalitePaiementController : ControllerBase
     {
-        IModalitePaiementRepository _ModalitePaiementRepository;
+        IModalitePaiementService _ModalitePaiementService;
 
-        public ModalitePaiementController(IModalitePaiementRepository frs)
+        public ModalitePaiementController(IModalitePaiementService mdt)
         {
-            _ModalitePaiementRepository = frs;
+            _ModalitePaiementService = mdt;
         }
         [HttpGet]
         public List<ModalitePaiement> GetAll()
         {
-            return _ModalitePaiementRepository.GetAll();
+            return _ModalitePaiementService.GetAll();
 
         }
         [HttpGet("{Numero}")]
         public ModalitePaiement GetById(int id)
         {
-            return _ModalitePaiementRepository.GetById(id);
+            return _ModalitePaiementService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]ModalitePaiement dvs)
+        public ModalitePaiement Post([FromBody]ModalitePaiement mdt)
         {
             if (ModelState.IsValid)
-                _ModalitePaiementRepository.Add(dvs);
+                _ModalitePaiementService.Add(mdt);
+            return mdt;
 
         }
-        [HttpPut]
-        public void Put([FromBody]ModalitePaiement dvs)
+        [HttpPut("{Numero}")]
+        public ModalitePaiement Put([FromBody]ModalitePaiement mdt)
         {
 
 
             if (ModelState.IsValid)
-                _ModalitePaiementRepository.Update(dvs);
+                _ModalitePaiementService.Update(mdt);
+            return mdt;
 
         }
         [HttpDelete("{numero}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+          
+            bool res = false;
 
-            _ModalitePaiementRepository.Delete(id);
+            if (_ModalitePaiementService.CheckMDT_ExistClient(id)==false)
+            {
+                _ModalitePaiementService.Delete(id);
+                res = true;
+
+            }
+
+            return res;
 
         }
     }

@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Repositories.Contracts
+namespace Services.Contracts
 {
-  public   interface IDeviseRepository
+   public interface IDeviseService
     {
         List<Devise> GetAll();
         Devise GetById(int id);
-        Devise GetByClient(int id);
-        Devise Add(Devise devise);
-        Devise Update(Devise devise);
+        Devise Add(Devise cbl);
+        Devise Update(Devise cbl);
+
+        bool CheckDev_ExistClient(int id);
         bool Delete(int id);
-       
     }
 }

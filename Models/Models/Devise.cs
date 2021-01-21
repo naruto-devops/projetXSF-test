@@ -5,7 +5,7 @@ using System.Text;
 namespace Models.Models
 {
     public class Devise
-    {
+    {   public int Numero { get; set; }
         public string  DEVISE { get; set; }
         public string  CODEISO { get; set; }
         public string  CODEBANQUE { get; set; }

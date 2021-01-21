@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,46 +14,51 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class IncotermController : ControllerBase
     {
-        IIncotermRepository _IncotermRepository;
+        IIncotermService _IncotermService;
 
-        public IncotermController(IIncotermRepository mlt)
+        public IncotermController(IIncotermService incoterm)
         {
-            _IncotermRepository = mlt;
+            _IncotermService = incoterm;
         }
         [HttpGet]
         public List<Incoterm> GetAll()
         {
-            return _IncotermRepository.GetAll();
+            return _IncotermService.GetAll();
 
         }
         [HttpGet("{Numero}")]
         public Incoterm GetById(int id)
         {
-            return _IncotermRepository.GetById(id);
+            return _IncotermService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]Incoterm mlt)
+        public Incoterm Post([FromBody]Incoterm incoterm)
         {
             if (ModelState.IsValid)
-                _IncotermRepository.Add(mlt);
-
+                _IncotermService.Add(incoterm);
+            return incoterm;
         }
         [HttpPut]
-        public void Put([FromBody]Incoterm mlt)
+        public Incoterm Put([FromBody]Incoterm incoterm)
         {
 
 
             if (ModelState.IsValid)
-                _IncotermRepository.Update(mlt);
-
+                _IncotermService.Update(incoterm);
+            return incoterm;
         }
         [HttpDelete("{numero}")]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+             bool res = false;
 
-            _IncotermRepository.Delete(id);
-
+            if (_IncotermService.CheckIncoterm_ExistClient(id) == false)
+            {
+                _IncotermService.Delete(id);
+                res = true;
+            }
+            return res;
         }
     }
 }

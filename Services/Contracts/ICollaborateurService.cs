@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Repositories.Contracts
+namespace Services.Contracts
 {
-    public interface ICollaborateurRepository
+    public interface ICollaborateurService
     {
         List<Collaborateur> GetAll();
         Collaborateur GetById(int id);
-        Collaborateur GetByClient(int id);
         Collaborateur Add(Collaborateur cbl);
         Collaborateur Update(Collaborateur cbl);
-        bool Delete(int id);
         
+        bool CheckCol_ExistClient(int id);
+        bool Delete(int id);
     }
 }

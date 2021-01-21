@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,45 +14,55 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class FamilleTierController : ControllerBase
     {
-        IFamilleTierRepository _FamilleTierRepository;
+        IFamilleTierService _FamilleTierService;
 
-        public FamilleTierController(IFamilleTierRepository frs)
+        public FamilleTierController(IFamilleTierService fts)
         {
-            _FamilleTierRepository = frs;
+            _FamilleTierService = fts;
         }
         [HttpGet]
         public List<FamilleTier> GetAll()
         {
-            return _FamilleTierRepository.GetAll();
+            return _FamilleTierService.GetAll();
 
         }
         [HttpGet("{code}")]
-        public FamilleTier GetById(string id)
+        public FamilleTier GetById(int id)
         {
-            return _FamilleTierRepository.GetById(id);
+            return _FamilleTierService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]FamilleTier frs)
+        public FamilleTier Post([FromBody]FamilleTier ft)
         {
             if (ModelState.IsValid)
-                _FamilleTierRepository.Add(frs);
+                _FamilleTierService.Add(ft);
+            return ft;
 
         }
         [HttpPut]
-        public void Put([FromBody]FamilleTier ft)
+        public FamilleTier Put([FromBody]FamilleTier ft)
         {
             
 
             if (ModelState.IsValid)
-                _FamilleTierRepository.Update(ft);
+                _FamilleTierService.Update(ft);
+            return ft;
 
         }
         [HttpDelete("{code}")]
-        public void Delete(string id)
+        public bool Delete(int id)
         {
+            bool res = false;
 
-            _FamilleTierRepository.Delete(id);
+            if (_FamilleTierService.CheckFAT_ExistClient(id)==false)
+            {
+                _FamilleTierService.Delete(id);
+                res = true;
+
+            }
+
+            return res;
 
         }
     }
