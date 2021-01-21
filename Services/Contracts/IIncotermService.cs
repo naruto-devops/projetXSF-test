@@ -3,15 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Repositories.Contracts
+namespace Services.Contracts
 {
- public    interface IIncotermRepository
+   public interface IIncotermService
     {
         List<Incoterm> GetAll();
         Incoterm GetById(int id);
-        Incoterm GetByClient(int id);
-        Incoterm Add(Incoterm mlt);
-        Incoterm Update(Incoterm mlt);
+        Incoterm Add(Incoterm incoterm);
+        Incoterm Update(Incoterm incoterm);
+
+        bool CheckIncoterm_ExistClient(int id);
         bool Delete(int id);
     }
 }

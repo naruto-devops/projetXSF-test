@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Models;
 using Repositories.Contracts;
+using Services.Contracts;
 
 namespace XSOFT_WEB.Controllers
 {
@@ -13,45 +14,53 @@ namespace XSOFT_WEB.Controllers
     [ApiController]
     public class DeviseController : ControllerBase
     {
-        IDeviseRepository _DeviseRepository;
+        IDeviseService _DeviseService;
 
-        public DeviseController(IDeviseRepository frs)
+        public DeviseController(IDeviseService dvs)
         {
-            _DeviseRepository = frs;
+            _DeviseService = dvs;
         }
         [HttpGet]
         public List<Devise> GetAll()
         {
-            return _DeviseRepository.GetAll();
+            return _DeviseService.GetAll();
 
         }
         [HttpGet("{code}")]
-        public Devise GetById(string id)
+        public Devise GetById(int id)
         {
-            return _DeviseRepository.GetById(id);
+            return _DeviseService.GetById(id);
 
         }
         [HttpPost]
-        public void Post([FromBody]Devise dvs)
+        public Devise Post([FromBody]Devise dvs)
         {
             if (ModelState.IsValid)
-                _DeviseRepository.Add(dvs);
-
+                _DeviseService.Add(dvs);
+            return dvs;
         }
         [HttpPut]
-        public void Put([FromBody]Devise dvs)
+        public Devise Put([FromBody]Devise dvs)
         {
 
 
             if (ModelState.IsValid)
-                _DeviseRepository.Update(dvs);
-
+                _DeviseService.Update(dvs);
+            return dvs;
         }
         [HttpDelete("{code}")]
-        public void Delete(string id)
+        public bool Delete(int id)
         {
+            bool res = false;
 
-            _DeviseRepository.Delete(id);
+            if (_DeviseService.CheckDev_ExistClient(id)==false)
+            {
+                _DeviseService.Delete(id);
+                res = true;
+            }
+
+            return res;
+            
 
         }
     }

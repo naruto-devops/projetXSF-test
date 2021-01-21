@@ -3,15 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Repositories.Contracts
+namespace Services.Contracts
 {
-   public interface ICategorieTarifRepository
+   public  interface ICategorieTarifService
     {
         List<CategorieTarif> GetAll();
         CategorieTarif GetById(int id);
-        CategorieTarif GetByClient(int id);
         CategorieTarif Add(CategorieTarif categorie);
         CategorieTarif Update(CategorieTarif categorie);
+        bool CheckCategorie_ExistClient(int id);
         bool Delete(int id);
     }
 }

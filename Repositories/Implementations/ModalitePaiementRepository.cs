@@ -79,14 +79,41 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return null;
 
             }
             return res;
         }
 
+        public ModalitePaiement GetByClient(int id)
+        {
+            var res = new ModalitePaiement();
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"select    EMR_NO as Numero,
+                                            EMR_Intitule as Intitule,
+                                            EMR_Code as Code,
+                                            EMR_Description as Description
 
-        public void Add(ModalitePaiement mlt)
+                                     from F_MODELREGENT
+                                     where EMR_NO  =@Id and EMR_Code in (select distinct EMR_CODE from F_COMPTET); ";
+                    dbConnection.Open();
+                    res = dbConnection.Query<ModalitePaiement>(sQuery, new { Id = id }).FirstOrDefault();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+            return res;
+        }
+
+        public ModalitePaiement Add(ModalitePaiement mlt)
         {
             
             try
@@ -105,13 +132,13 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return mlt;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
 
             try
@@ -126,13 +153,13 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return false;
 
             }
-
+            return true;
         }
 
-        public void Update(ModalitePaiement mlt)
+        public ModalitePaiement Update(ModalitePaiement mlt)
         {
 
             try
@@ -151,10 +178,10 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return mlt;
         }
     }
 }

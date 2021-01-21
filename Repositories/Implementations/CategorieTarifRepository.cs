@@ -29,14 +29,39 @@ namespace Repositories.Implementations
 
         public List<CategorieTarif> GetAll()
         {
-            var res = new List<CategorieTarif>();
+            var categories = new List<CategorieTarif>();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif  ";
+                    string sQuery = @"select ct_no as Numero,ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif  ";
                     dbConnection.Open();
-                    res = dbConnection.Query<CategorieTarif>(sQuery).ToList();
+                    categories = dbConnection.Query<CategorieTarif>(sQuery).ToList();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+
+            return categories;
+        }
+
+
+        public CategorieTarif GetById(int id)
+        {
+            var categorie = new CategorieTarif();
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"select  ct_no as Numero, ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif
+                                        where ct_no =@Id ";
+                    dbConnection.Open();
+                    categorie = dbConnection.Query<CategorieTarif>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
@@ -44,39 +69,39 @@ namespace Repositories.Implementations
             catch (Exception)
             {
 
-
+                return null;
             }
-
-            return res;
+            return categorie;
         }
 
 
-        public CategorieTarif GetById(string id)
+        public CategorieTarif GetByClient(int id)
         {
-            var res = new CategorieTarif();
+            var categorie = new CategorieTarif();
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"select   ct_intitule as categorie, CT_TTC as PrixTTC from P_cattarif where ct_intitule =@Id ";
+                    string sQuery = @"select  ct_no as Numero,  ct_intitule as categorie, CT_TTC as PrixTTC 
+                                    from P_cattarif where ct_no =@Id and Ct_NO in (select distinct N_catTarif from F_COMPTET)";
                     dbConnection.Open();
-                    res= dbConnection.Query<CategorieTarif>(sQuery, new { Id = id }).FirstOrDefault();
+                    categorie = dbConnection.Query<CategorieTarif>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-            return res;
+            return categorie;
         }
 
 
-        public void Add(CategorieTarif frs)
+        public CategorieTarif Add(CategorieTarif categorie)
         {
-            var finput = frs;
+         
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -85,27 +110,53 @@ namespace Repositories.Implementations
                                     ( ct_intitule , CT_TTC    )
                                      VALUES  (@categorie,@PrixTTC )";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, frs);
+                    dbConnection.Execute(sQuery, categorie);
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return categorie;
         }
 
-        public void Delete(string id)
+       
+
+        public CategorieTarif Update(CategorieTarif categorie)
         {
 
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
-                    string sQuery = @"Delete from P_cattarif where  ct_intitule = @Id ";
+                    string sQuery = @"update  P_cattarif set  ct_intitule =@categorie ,
+                                    CT_TTC=@PrixTTC where ct_no =@numero";
+
+                    dbConnection.Open();
+                    dbConnection.Execute(sQuery, categorie);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+            return categorie;
+        }
+
+        public bool Delete(int id)
+        {
+
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"Delete from P_cattarif where  ct_no = @Id ";
                     dbConnection.Open();
                     dbConnection.Execute(sQuery, new { ID = id });
                 }
@@ -113,33 +164,10 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
-
-            }
-
-        }
-
-        public void Update(CategorieTarif fts)
-        {
-
-            try
-            {
-                using (IDbConnection dbConnection = Connection)
-                {
-                    string sQuery = @"update  P_cattarif set  ct_intitule =@categorie , CT_TTC=@PrixTTC where ct_intitule =@categorie";
-
-                    dbConnection.Open();
-                    dbConnection.Execute(sQuery, fts);
-
-                }
+                return false;
 
             }
-            catch (Exception)
-            {
-
-
-            }
-
+            return true;
         }
     }
 }

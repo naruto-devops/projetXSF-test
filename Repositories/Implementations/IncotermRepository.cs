@@ -49,7 +49,7 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return null;
 
             }
 
@@ -59,7 +59,7 @@ namespace Repositories.Implementations
 
         public Incoterm GetById(int id)
         {
-            var res = new Incoterm();
+            var incoterm = new Incoterm();
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -72,21 +72,21 @@ namespace Repositories.Implementations
                                                  from P_INCOTERMS
                                                  where IT_NO  =@Id ";
                     dbConnection.Open();
-                    res = dbConnection.Query<Incoterm>(sQuery, new { Id = id }).FirstOrDefault();
+                    incoterm = dbConnection.Query<Incoterm>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-            return res;
+            return incoterm;
         }
 
 
-        public void Add(Incoterm mlt)
+        public Incoterm Add(Incoterm incoterm)
         {
 
             try
@@ -99,20 +99,20 @@ namespace Repositories.Implementations
                                         )
                                      VALUES  (@Code,@Libelle,@DateCreation,@DateModification,@Utilisateur )";
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, mlt);
+                    dbConnection.Execute(sQuery, incoterm);
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return incoterm;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
 
             try
@@ -127,13 +127,43 @@ namespace Repositories.Implementations
             }
             catch (Exception)
             {
-
+                return false;
 
             }
-
+            return true;
         }
 
-        public void Update(Incoterm mlt)
+        
+
+        public Incoterm GetByClient(int id)
+        {
+            var incoterm = new Incoterm();
+            try
+            {
+                using (IDbConnection dbConnection = Connection)
+                {
+                    string sQuery = @"select      
+                                               IT_NO as Numero, IT_Code as Code,IT_LIBELLE as Libelle,IT_DATECREATE as DateCreation,
+                                                IT_DATEMODIF as DateModification,IT_USER as Utilisateur
+
+
+                                                 from P_INCOTERMS
+                                                 where IT_NO  =@Id and IT_code  in (select distinct IT_code from F_COMPTET) ";
+                    dbConnection.Open();
+                    incoterm = dbConnection.Query<Incoterm>(sQuery, new { Id = id }).FirstOrDefault();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+            return incoterm;
+        }
+
+        public Incoterm Update(Incoterm incoterm)
         {
 
             try
@@ -146,17 +176,17 @@ namespace Repositories.Implementations
                                       where  IT_NO=@Numero";
 
                     dbConnection.Open();
-                    dbConnection.Execute(sQuery, mlt);
+                    dbConnection.Execute(sQuery, incoterm);
 
                 }
 
             }
             catch (Exception)
             {
-
+                return null;
 
             }
-
+            return incoterm;
         }
     }
 }
