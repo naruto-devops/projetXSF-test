@@ -19,16 +19,29 @@ namespace Cons_API.Controllers
             return View(listeclients);
         }
 
-        public IActionResult AddOrEdit(int i)
+        public IActionResult Add(int i)
         {
 
             return View(new Client());
         }
         [HttpPost]
-        public IActionResult AddOrEdit(Client clt)
+        public IActionResult Add(Client clt)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Client", clt).Result;
 
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int i)
+        {
+
+            return View(new Client());
+        }
+        [HttpPut]
+        public IActionResult Edit(Client clt)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Client", clt).Result;
+           
             return RedirectToAction("Index");
         }
     }

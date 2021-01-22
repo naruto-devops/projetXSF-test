@@ -11,44 +11,45 @@ using System.Text;
 
 namespace Repositories.Implementations
 {
-   public  class ClientRepository : IClientRepository
-   {
-        
-            IConfiguration Configuration { get; }
-            public ClientRepository(IConfiguration configuration)
-            {
-                Configuration = configuration;
-            }
-            public IDbConnection Connection
-            {
-                get
-                {
-                    return new SqlConnection(Configuration.GetConnectionString("DefaultConnection"));
-                }
+    public class ClientRepository : IClientRepository
+    {
 
+        IConfiguration Configuration { get; }
+        public ClientRepository(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+        public IDbConnection Connection
+        {
+            get
+            {
+                return new SqlConnection(Configuration.GetConnectionString("DefaultConnection"));
             }
 
-            public List<Client> GetAll()
+        }
+
+        public List<Client> GetAll()
+        {
+            var res = new List<Client>();
+            try
             {
-                var res = new List<Client>();
-                try
+                using (IDbConnection dbConnection = Connection)
                 {
-                    using (IDbConnection dbConnection = Connection)
-                    {
-                        string sQuery = @"select * from F_COMPTET where CT_Type = '0' ";
-                        dbConnection.Open();
-                        res = dbConnection.Query<Client>(sQuery).ToList();
-
-                    }
+                    string sQuery = @"select * from F_COMPTET where CT_Type = '0' ";
+                    dbConnection.Open();
+                    res = dbConnection.Query<Client>(sQuery).ToList();
 
                 }
-                catch (Exception)
-                {
+
+            }
+            catch (Exception)
+            {
 
 
-                }
-                return res;
-              }
+            }
+
+            return res;
+        }
 
 
         public Client GetById(int id)
@@ -60,7 +61,7 @@ namespace Repositories.Implementations
                 {
                     string sQuery = @"select * from F_COMPTET where CT_Type = '0' and cbMarq =@Id ";
                     dbConnection.Open();
-                    return dbConnection.Query<Client>(sQuery, new { Id = id }).FirstOrDefault();
+                    res = dbConnection.Query<Client>(sQuery, new { Id = id }).FirstOrDefault();
 
                 }
 
@@ -76,7 +77,7 @@ namespace Repositories.Implementations
 
         public void Add(Client clt)
         {
-           
+
             try
             {
                 using (IDbConnection dbConnection = Connection)
@@ -85,7 +86,7 @@ namespace Repositories.Implementations
                                     (CT_Num,CT_Intitule,CT_Type  ,CG_NumPrinc                )
                                      VALUES  (@CT_Num ,@CT_Intitule  ,@CT_Type ,@CG_NumPrinc          )";
                     dbConnection.Open();
-                     dbConnection.Execute(sQuery,clt);
+                    dbConnection.Execute(sQuery, clt);
 
                 }
 
@@ -95,19 +96,19 @@ namespace Repositories.Implementations
 
 
             }
-           
+
         }
 
         public void Delete(string id)
         {
-           
+
             try
             {
                 using (IDbConnection dbConnection = Connection)
                 {
                     string sQuery = @"Delete from F_COMPTET where CT_Type = '0' and CT_NUM =@Id ";
                     dbConnection.Open();
-                     dbConnection.Execute(sQuery, new { ID= id});
+                    dbConnection.Execute(sQuery, new { ID = id });
                 }
 
             }
@@ -116,7 +117,7 @@ namespace Repositories.Implementations
 
 
             }
-            
+
         }
 
         public void Update(string id)

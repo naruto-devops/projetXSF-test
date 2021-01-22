@@ -1,13 +1,14 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Cons_API.Models
 {
     public class Client
     {
-
+        [Required(ErrorMessage = "Num is required.")]
         public string CT_Num { get; set; }
         public string CT_Intitule { get; set; }
         public int CT_Type { get; set; }

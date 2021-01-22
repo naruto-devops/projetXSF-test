@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cons_API.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleGeneriqueController : Controller
     {
        
             public IActionResult Index()
